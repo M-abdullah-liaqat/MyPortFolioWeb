@@ -149,7 +149,7 @@ export default function Home() {
           >
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#d4f7d2_0%,#06d481_50%,#d4f7d2_100%)]" />
             <img
-              src="/ProfilePicture4.png"
+              src="/ProfilePicture5.png"
               className="w-[95%] h-[95%] z-20"
               alt="thisis"
             />
