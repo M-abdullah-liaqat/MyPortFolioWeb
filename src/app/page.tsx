@@ -1,103 +1,214 @@
+"use client";
 import Image from "next/image";
+import { Roboto, Bebas_Neue } from "next/font/google";
+import { Button } from "@/Components/ui/button";
+import NavBar from "@/Components/NavBar";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import Page1 from "@/Components/page1";
+import React, { useRef, useState } from "react";
+import AboutMe from "@/Components/aboutPage";
+import TechStack from "@/Components/tech-stack";
+import Projects from "@/Components/ProjectsCards";
+import ContactArea from "@/Components/endingArea";
+const Robot = Roboto({
+  subsets: ["latin"],
+  weight: "400",
+});
+const Bebas = Bebas_Neue({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export default function Home() {
+  const Profile = useRef<HTMLDivElement>(null);
+  const text1 = useRef<HTMLDivElement>(null);
+  const text2 = useRef<HTMLDivElement>(null);
+  const text3 = useRef<HTMLDivElement>(null);
+  const text3d = useRef<HTMLDivElement>(null);
+  const develop = useRef<HTMLSpanElement>(null);
+  const contactREF = useRef<HTMLDivElement | null>(null);
+  const ProjectsRef = useRef<HTMLDivElement | null>(null);
+  const StackRef = useRef<HTMLDivElement | null>(null);
+  const [rotateX, setrotateX] = useState(0);
+  const [rotateY, setrotateY] = useState(0);
+  useGSAP(() => {
+    let tl = gsap.timeline();
+    gsap.to(Profile.current, {
+      scale: 1,
+      duration: 2,
+      ease: "power4.out",
+    });
+    tl.from(text1.current, {
+      opacity: 0,
+      y: 50,
+      duration: 0.5,
+    });
+    tl.from(text2.current, {
+      opacity: 0,
+      y: 50,
+      duration: 0.5,
+    });
+    tl.from(text3.current, {
+      opacity: 0,
+      y: 50,
+      duration: 0.5,
+    });
+  });
+  useGSAP(() => {
+    gsap.from(develop.current, {
+      rotateY: 360,
+      duration: 1,
+      ease: "power4.out",
+      repeat: -1,
+      delay: 1,
+    });
+  });
+  const MouseMoving = (e: any) => {
+    console.log(e.clientX, e.clientY);
+    console.log(text3d.current?.getBoundingClientRect().width);
+    if (!text3d.current) return;
+    setrotateY(
+      (e.clientX -
+        text3d.current?.getBoundingClientRect()?.x -
+        text3d.current?.getBoundingClientRect()?.width / 2) /
+        40
+    );
+    setrotateX(
+      (e.clientY -
+        text3d.current?.getBoundingClientRect()?.y -
+        text3d.current?.getBoundingClientRect()?.height / 2) /
+        20
+    );
+  };
+  useGSAP(() => {
+    gsap.to(text3d.current, {
+      transformStyle: "preserve-3d",
+      transform: `rotateY(${rotateY}deg) rotateX(${rotateX}deg)`,
+      ease: "power3.out",
+    });
+  }, [rotateX, rotateY]);
+  const onclickAboutMe = () => {
+    if (contactREF.current) {
+      contactREF.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
+    }
+  };
+  const onclickProjects = () => {
+    if (ProjectsRef.current) {
+      ProjectsRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
+    }
+  };
+  const onclickStack = () => {
+    if (StackRef.current) {
+      StackRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "nearest",
+      });
+    }
+  };
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <NavBar
+        onAbout={onclickAboutMe}
+        onProject={onclickProjects}
+        onStack={onclickStack}
+      />
+      <div
+        onMouseMove={(e) => {
+          MouseMoving(e);
+        }}
+        className={`${Robot.className} md:h-[92vh] h-[80vh] w-full bg-[#121212] rounded-xl grid lg:grid-cols-2 grid-cols-1 text-white lg:pt-0 pt-[130px] pb-5`}
+      >
+        <div className="perspective-distant hidden lg:flex justify-center flex-col xl:ml-40 lg:ml-27 ml-10">
+          <div ref={text3d} className="Tilt">
+            <div
+              ref={text1}
+              className={`${Bebas.className} text-[3.5vw] leading-[3.5vw] my-5`}
+            >
+              Hi, It's{" "}
+              <span className={`${Bebas.className}`}>Muhammad Abdullah</span>
+            </div>
+            <div
+              ref={text2}
+              className={`${Bebas.className} text-[7vw] leading-[6vw]`}
+            >
+              Full Stack Web <span ref={develop}>Developer</span>
+            </div>
+            <div ref={text3} className="flex lg:space-x-6 space-x-4 mt-8">
+              <button
+                onClick={onclickProjects}
+                className="2xl:text-[1vw] text-[1vw] 2xl:leading-[1vw] leading-[1vw] font-medium rounded-lg hover:bg-[#272727]/80 lg:px-7 px-4 py-3 border-[1px] border-gray-200 cursor-pointer"
+              >
+                View Projects
+              </button>
+              <button className="bg-[#2FD391] text-[#121212] 2xl:text-[1vw] text-[1vw] 2xl:leading-[1vw] focus:ring-3 ring-white leading-[1vw] font-bold rounded-lg hover:bg-[#2FD391]/80 lg:px-7 px-4 py-3 cursor-pointer">
+                <a href="/demoRes.pdf" download="Abdullah Resume">
+                  Download Resume
+                </a>
+              </button>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <div className="flex justify-center items-center">
+          <div
+            ref={Profile}
+            className="scale-0 relative xl:w-[450px] lg:w-[350px] md:w-[280px] w-[200px] xl:h-[450px] lg:h-[350px] md:h-[280px] h-[200px] rounded-full flex items-end justify-center overflow-hidden"
+          >
+            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#d4f7d2_0%,#06d481_50%,#d4f7d2_100%)]" />
+            <img
+              src="/ProfilePicture4.png"
+              className="w-[95%] h-[95%] z-20"
+              alt="thisis"
+            />
+          </div>
+        </div>
+        <div className="lg:hidden perspective-distant flex justify-center mx-10 items-center flex-col">
+          <div className="Tilt text-center">
+            <div
+              ref={text1}
+              className={`${Bebas.className} md:text-[3.5vw] md:leading-[3.5vw] text-[7vw] leading-[7w] my-5`}
+            >
+              Hi, It's{" "}
+              <span className={`${Bebas.className}`}>Muhammad Abdullah</span>
+            </div>
+            <div
+              ref={text2}
+              className={`${Bebas.className} md:text-[7vw] md:leading-[7vw] text-[13vw] leading-[12vw]`}
+            >
+              Full Stack Web <span ref={develop}>Developer</span>
+            </div>
+            <div
+              ref={text3}
+              className="flex lg:space-x-6 space-x-4 mt-8 justify-center"
+            >
+              <button
+                onClick={onclickProjects}
+                className="text-[2vw] leading-[2vw] font-medium rounded-lg hover:bg-[#272727]/80 lg:px-7 px-4 py-3 border-[1px] border-gray-200 cursor-pointer"
+              >
+                View Projects
+              </button>
+              <button className="bg-[#2FD391] text-[#121212] text-[2vw] focus:ring-3 ring-white leading-[2vw] font-bold rounded-lg hover:bg-[#2FD391]/80 lg:px-7 px-4 py-3 cursor-pointer">
+                <a href="/demoRes.pdf" download="Abdullah Resume">
+                  Download Resume
+                </a>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <AboutMe />
+      <TechStack ref={StackRef} />
+      <Projects ref={ProjectsRef} />
+      <ContactArea ref={contactREF} />
+    </>
   );
 }
