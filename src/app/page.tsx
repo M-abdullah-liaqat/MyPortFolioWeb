@@ -33,6 +33,13 @@ export default function Home() {
   const [rotateX, setrotateX] = useState(0);
   const [rotateY, setrotateY] = useState(0);
   useGSAP(() => {
+    gsap.to(Profile.current, {
+      scale: 1,
+      duration: 2,
+      ease: "power4.out",
+    });
+  });
+  useGSAP(() => {
     gsap.from(develop.current, {
       rotateY: 360,
       duration: 1,
@@ -128,7 +135,7 @@ export default function Home() {
                 View Projects
               </button>
               <button className="bg-[#2FD391] text-[#121212] 2xl:text-[1vw] text-[1vw] 2xl:leading-[1vw] focus:ring-3 ring-white leading-[1vw] font-bold rounded-lg hover:bg-[#2FD391]/80 lg:px-7 px-4 py-3 cursor-pointer">
-                <a href="/demoRes.pdf" download="Abdullah Resume">
+                <a href="/realResume.pdf" download="Abdullah Resume">
                   Download Resume
                 </a>
               </button>
@@ -174,7 +181,7 @@ export default function Home() {
                 View Projects
               </button>
               <button className="bg-[#2FD391] text-[#121212] text-[2vw] focus:ring-3 ring-white leading-[2vw] font-bold rounded-lg hover:bg-[#2FD391]/80 lg:px-7 px-4 py-3 cursor-pointer">
-                <a href="/demoRes.pdf" download="Abdullah Resume">
+                <a href="/realResume.pdf" download="Abdullah Resume">
                   Download Resume
                 </a>
               </button>
