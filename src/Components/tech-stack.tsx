@@ -25,7 +25,7 @@ const clients = [
   { href: "/Tech Stack Icons/11.svg", alt: "FireBase" },
   { href: "/Tech Stack Icons/12.svg", alt: "Figma" },
 ];
-const TechStack = forwardRef<HTMLDivElement, object> ((_props, ref) => {
+const TechStack = forwardRef<HTMLDivElement, object> (function TechStack(_props, ref) {
   return (
     <div
     ref={ref}

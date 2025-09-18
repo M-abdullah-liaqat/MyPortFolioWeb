@@ -22,7 +22,7 @@ const Robot = Roboto({
   weight: "400",
 });
 
-const ContactArea = forwardRef<HTMLDivElement, object>((_props, ref) => {
+const ContactArea = forwardRef<HTMLDivElement, object>(function ContactArea(_props, ref){
   const socialImage1 = useRef<HTMLImageElement>(null);
 
   return (

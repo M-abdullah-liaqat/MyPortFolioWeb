@@ -33,29 +33,6 @@ export default function Home() {
   const [rotateX, setrotateX] = useState(0);
   const [rotateY, setrotateY] = useState(0);
   useGSAP(() => {
-    let tl = gsap.timeline();
-    gsap.to(Profile.current, {
-      scale: 1,
-      duration: 2,
-      ease: "power4.out",
-    });
-    tl.from(text1.current, {
-      opacity: 0,
-      y: 50,
-      duration: 0.5,
-    });
-    tl.from(text2.current, {
-      opacity: 0,
-      y: 50,
-      duration: 0.5,
-    });
-    tl.from(text3.current, {
-      opacity: 0,
-      y: 50,
-      duration: 0.5,
-    });
-  });
-  useGSAP(() => {
     gsap.from(develop.current, {
       rotateY: 360,
       duration: 1,
@@ -64,7 +41,7 @@ export default function Home() {
       delay: 1,
     });
   });
-  const MouseMoving = (e: any) => {
+  const MouseMoving = (e: React.MouseEvent<HTMLDivElement>) => {
     console.log(e.clientX, e.clientY);
     console.log(text3d.current?.getBoundingClientRect().width);
     if (!text3d.current) return;
@@ -134,7 +111,7 @@ export default function Home() {
               ref={text1}
               className={`${Bebas.className} text-[3.5vw] leading-[3.5vw] my-5`}
             >
-              Hi, It's{" "}
+              Hi, It&#39;s{" "}
               <span className={`${Bebas.className}`}>Muhammad Abdullah</span>
             </div>
             <div
@@ -177,7 +154,7 @@ export default function Home() {
               ref={text1}
               className={`${Bebas.className} md:text-[3.5vw] md:leading-[3.5vw] text-[7vw] leading-[7w] my-5`}
             >
-              Hi, It's{" "}
+              Hi, It&#39;s{" "}
               <span className={`${Bebas.className}`}>Muhammad Abdullah</span>
             </div>
             <div

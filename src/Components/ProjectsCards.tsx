@@ -62,7 +62,7 @@ const projectDetails = [
     stack: [1, 5, 9, 6, 15],
   },
 ];
-const Projects = forwardRef<HTMLDivElement, object>((_props, ref) => {
+const Projects = forwardRef<HTMLDivElement, object>(function Projects(_props, ref) {
   return (
     <div
     ref={ref}
