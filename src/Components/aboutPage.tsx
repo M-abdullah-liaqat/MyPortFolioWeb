@@ -8,10 +8,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { forwardRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
-interface Props {
-  aboutRef: any
-}
-
 const Bebas = Bebas_Neue({
   subsets: ["latin"],
   weight: "400",
@@ -20,7 +16,7 @@ const Robot = Roboto({
   subsets: ["latin"],
   weight: "400",
 });
-const AboutMe = forwardRef<HTMLDivElement, object>((_props, ref) => {
+const AboutMe = () => {
   const text1Head = useRef<HTMLDivElement>(null);
   const text2Para = useRef<HTMLDivElement>(null);
   const theImage = useRef<HTMLDivElement>(null);
@@ -57,7 +53,6 @@ const AboutMe = forwardRef<HTMLDivElement, object>((_props, ref) => {
   });
   return (
     <div
-    ref={ref}
       className={`${Robot.className} MainPage 3xl:w-[1632px] justify-self-center text-black my-10 grid w-full lg:grid-cols-2 grid-cols-1 gap-5`}
     >
       <div className="xl:px-15 lg:px-5 px-2 py-8 flex flex-col gap-5 justify-center">
@@ -89,6 +84,6 @@ const AboutMe = forwardRef<HTMLDivElement, object>((_props, ref) => {
       </div>
     </div>
   );
-});
+};
 
 export default AboutMe;

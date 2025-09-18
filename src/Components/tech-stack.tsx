@@ -10,7 +10,6 @@ const Robot = Roboto({
   subsets: ["latin"],
   weight: "400",
 });
-interface Props {}
 
 const clients = [
   { href: "/Tech Stack Icons/1.svg", alt: "Next js" },

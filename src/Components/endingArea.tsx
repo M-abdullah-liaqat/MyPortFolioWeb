@@ -21,7 +21,6 @@ const Robot = Roboto({
   subsets: ["latin"],
   weight: "400",
 });
-interface Props {}
 
 const ContactArea = forwardRef<HTMLDivElement, object>((_props, ref) => {
   const socialImage1 = useRef<HTMLImageElement>(null);

@@ -11,7 +11,6 @@ const Robot = Roboto({
   subsets: ["latin"],
   weight: "400",
 });
-interface Props {}
 
 const projectDetails = [
   {

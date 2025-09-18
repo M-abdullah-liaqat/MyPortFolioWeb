@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "motion/react";
-import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Card } from "./stackCard";
 
 export const HoverEffect = ({
@@ -12,12 +11,7 @@ export const HoverEffect = ({
     alt: string;
   }[];
 }) => {
-  const [IsMouseOver, setIsMouseOver] = useState(false);
-  let [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const hoverHandle = () => {
-    setIsMouseOver(!IsMouseOver);
-    console.log(IsMouseOver);
-  };
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   return (
     <div className="grid 2xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 2xl:px-[15px] lg:px-[1vw] md:px-[1.25vw] px-[2.5vw]">
       {items.map((item, idx) => (
