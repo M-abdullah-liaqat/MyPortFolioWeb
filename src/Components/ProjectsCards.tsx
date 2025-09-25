@@ -49,7 +49,7 @@ const projectDetails = [
     title: "AHR Trades Full-stack E-commerce",
     description:
       "AHR Traders is a full-stack e-commerce app focused on laptops. Products can be added to this website dynamically. The app is divided into two parts: the main website, where users can buy products, and the admin area, where we can add or delete products and manage orders",
-    link: "https://bitreelinks.vercel.app",
+    link: "https://ahr-traders.vercel.app",
     image: "/web5.png",
     stack: [1, 5, 10, 6],
   },
