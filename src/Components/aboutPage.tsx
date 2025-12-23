@@ -29,6 +29,7 @@ const AboutMe = () => {
       scrollTrigger: {
         trigger: text2Para.current,
         scroller: "body",
+        toggleActions: "restart none none reset",
       },
     });
     gsap.from(text1Head.current, {
@@ -38,6 +39,7 @@ const AboutMe = () => {
       scrollTrigger: {
         trigger: text2Para.current,
         scroller: "body",
+        toggleActions: "restart none none reset",
       },
     });
     gsap.from(text2Para.current, {
@@ -48,6 +50,7 @@ const AboutMe = () => {
       scrollTrigger: {
         trigger: text2Para.current,
         scroller: "body",
+        toggleActions: "restart none none reset",
       },
     });
   });
